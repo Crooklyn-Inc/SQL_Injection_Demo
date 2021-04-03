@@ -28,7 +28,7 @@ def print_res():
     start()
 
 
-def get_info(login, pswd):
+def get_info_bad(login, pswd):
     statement = 'select * from sqlinjdemo.sqlinj where username = \'%s\' and userpass = \'%s\';' % (
         login.lower(), pswd.lower())
 
@@ -42,9 +42,23 @@ def get_info(login, pswd):
         print("Beeeeeh!, ERROR! ERROR! ERROR! ERROR!")
 
 
+def get_info_good(login, pswd):
+    statement = ("select * from sqlinjdemo.sqlinj where username = %(username)s"
+                 " and userpass = %(userpass)s");
+    mycursor.execute(statement, {'username': login, 'userpass': pswd})
+    result = mycursor.fetchall()
+    if len(result) > 0:
+        mycursor.execute(statement, {'username': login, 'userpass': pswd})
+        mydb.commit()
+        print("%d result ✋" % len(result))  # 1 result ✋
+    else:
+        print(" ✋!!!!!!!!   Error! Error!")
+
+
 def start():
     log_detail = ask_for_login()
-    get_info(log_detail[0], log_detail[1])
+    get_info_bad(log_detail[0], log_detail[1])
+    # get_info_good(log_detail[0], log_detail[1])
     print_res()
 
 
