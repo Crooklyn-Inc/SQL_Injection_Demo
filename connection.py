@@ -39,7 +39,7 @@ def get_info_bad(login, pswd):
                 mycursor.execute(s)
                 mydb.commit()
     except Exception as e:
-        print("Beeeeeh!, ERROR! ERROR! ERROR! ERROR!")
+        print("ERROR! ERROR! ERROR! ERROR!")
 
 
 def get_info_good(login, pswd):
@@ -50,9 +50,8 @@ def get_info_good(login, pswd):
     if len(result) > 0:
         mycursor.execute(statement, {'username': login, 'userpass': pswd})
         mydb.commit()
-        print("%d result ✋" % len(result))  # 1 result ✋
     else:
-        print(" ✋!!!!!!!!   Error! Error!")
+        print("!!!!!!!!   Error! Error!!!!!!")
 
 
 def start():
